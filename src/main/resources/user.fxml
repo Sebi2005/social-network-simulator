@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ui.UserController">
+
+
+    <top>
+        <VBox spacing="5">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <Label text="Add new post (min 3 chars)" />
+            <HBox spacing="5">
+                <TextField fx:id="postField" prefWidth="400"/>
+                <Button text="Add" onAction="#onAddPost"/>
+            </HBox>
+
+            <Label text="Update selected post" />
+            <HBox spacing="5">
+                <TextField fx:id="editField" prefWidth="400"/>
+                <Button text="Update" onAction="#onUpdatePost"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <!-- CENTER: lists -->
+    <center>
+        <GridPane hgap="10" vgap="5">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <columnConstraints>
+                <ColumnConstraints percentWidth="33"/>
+                <ColumnConstraints percentWidth="33"/>
+                <ColumnConstraints percentWidth="34"/>
+            </columnConstraints>
+
+            <!-- FEED -->
+            <Label text="Feed" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <ListView fx:id="feedList"
+                      GridPane.rowIndex="1"
+                      GridPane.columnIndex="0"
+                      prefHeight="300"/>
+
+            <!-- MY POSTS -->
+            <Label text="My posts" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            <ListView fx:id="myPostsList"
+                      GridPane.rowIndex="1"
+                      GridPane.columnIndex="1"
+                      prefHeight="300"
+                      onMouseClicked="#onSelectMyPost"/>
+
+            <!-- SUBSCRIPTIONS -->
+            <Label text="My topics" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+            <ListView fx:id="subsList"
+                      GridPane.rowIndex="1"
+                      GridPane.columnIndex="2"
+                      prefHeight="300"/>
+        </GridPane>
+    </center>
+
+
+    <bottom>
+        <VBox spacing="5">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <Label text="Subscribe to topic" />
+            <TextField fx:id="topicSearchField"
+                       promptText="type to search"
+                       onKeyReleased="#onTopicSearchChanged"/>
+
+            <HBox spacing="5">
+                <ListView fx:id="topicResultsList" prefHeight="100"/>
+                <Button text="Subscribe" onAction="#onSubscribe"/>
+            </HBox>
+        </VBox>
+    </bottom>
+
+</BorderPane>
+
+
